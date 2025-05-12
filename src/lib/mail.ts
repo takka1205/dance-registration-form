@@ -9,6 +9,149 @@ const transporter = nodemailer.createTransport({
   ignoreTLS: true, // TLSを無視
 });
 
+// 汎用的なメール送信関数
+export async function sendMail({
+  to,
+  subject,
+  text,
+  html
+}: {
+  to: string;
+  subject: string;
+  text?: string;
+  html: string;
+}) {
+  try {
+    // メールの内容を設定
+    const mailOptions = {
+      from: '"ダンスドリル運営チーム" <noreply@dancedrill.example.com>',
+      to,
+      subject,
+      text,
+      html,
+    };
+
+    // メールを送信
+    const info = await transporter.sendMail(mailOptions);
+    console.log('メール送信成功:', info.messageId);
+    return { success: true, messageId: info.messageId };
+  } catch (error) {
+    console.error('メール送信エラー:', error);
+    return { success: false, error };
+  }
+}
+
+// 新規登録案内メールを送信する関数
+export async function sendRegistrationInviteEmail(
+  to: string,
+  registrationUrl: string
+) {
+  try {
+    // メールの内容を設定
+    const mailOptions = {
+      from: '"ダンスドリル運営チーム" <noreply@dancedrill.example.com>',
+      to,
+      subject: '【ダンスドリル】アカウント登録のご案内',
+      text: `
+ダンスドリル登録システムにご興味をお持ちいただき、誠にありがとうございます。
+
+下記のリンクから、アカウント登録を完了させてください。
+${registrationUrl}
+
+このリンクは24時間有効です。期限が切れた場合は、再度登録手続きを行ってください。
+
+※このメールは自動送信されています。返信はできませんのでご了承ください。
+
+------------------------------
+ダンスドリル運営チーム
+support@dancedrill.example.com
+https://dancedrill.example.com
+------------------------------`,
+      html: `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .container {
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 5px;
+    }
+    .header {
+      background-color: #4a6cf7;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      border-radius: 5px 5px 0 0;
+    }
+    .content {
+      padding: 20px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #4a6cf7;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #777;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>ダンスドリル</h1>
+    </div>
+    <div class="content">
+      <p>ダンスドリル登録システムにご興味をお持ちいただき、誠にありがとうございます。</p>
+      
+      <p>下記のボタンから、アカウント登録を完了させてください。</p>
+      
+      <a href="${registrationUrl}" class="button">アカウント登録を完了する</a>
+      
+      <p>このリンクは24時間有効です。期限が切れた場合は、再度登録手続きを行ってください。</p>
+      
+      <p>※このメールは自動送信されています。返信はできませんのでご了承ください。</p>
+    </div>
+    <div class="footer">
+      <p>
+        ダンスドリル運営チーム<br>
+        support@dancedrill.example.com<br>
+        https://dancedrill.example.com
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+      `,
+    };
+
+    // メールを送信
+    const info = await transporter.sendMail(mailOptions);
+    console.log('登録案内メール送信成功:', info.messageId);
+    return { success: true, messageId: info.messageId };
+  } catch (error) {
+    console.error('登録案内メール送信エラー:', error);
+    return { success: false, error };
+  }
+}
+
 // 登録完了メールを送信する関数
 export async function sendRegistrationEmail(
   to: string,

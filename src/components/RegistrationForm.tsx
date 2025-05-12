@@ -17,7 +17,12 @@ import { getAddressByPostalCode } from '@/lib/postal-api';
 // フォームの状態を管理する型
 type FormStep = 'input' | 'confirm' | 'complete';
 
-export default function RegistrationForm() {
+// コンポーネントのプロパティ型
+interface RegistrationFormProps {
+  defaultEmail?: string;
+}
+
+export default function RegistrationForm({ defaultEmail = '' }: RegistrationFormProps) {
   // フォームのステップ状態
   const [formStep, setFormStep] = useState<FormStep>('input');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,9 +43,17 @@ export default function RegistrationForm() {
     resolver: zodResolver(registrationSchema),
     defaultValues: {
       receiveNews: false,
-      parentalConsent: false
+      parentalConsent: false,
+      email: defaultEmail
     }
   });
+
+  // defaultEmailが変更されたときにフォームの値を更新
+  useEffect(() => {
+    if (defaultEmail) {
+      setValue('email', defaultEmail);
+    }
+  }, [defaultEmail, setValue]);
 
   // ユーザータイプの値を監視して保護者確認の表示を切り替える
   const userType = watch('userType');
