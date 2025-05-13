@@ -902,6 +902,8 @@ export namespace Prisma {
     photoUrl: string | null
     email: string | null
     password: string | null
+    resetToken: string | null
+    resetTokenExpiry: Date | null
     receiveNews: boolean | null
     parentalConsent: boolean | null
     createdAt: Date | null
@@ -929,6 +931,8 @@ export namespace Prisma {
     photoUrl: string | null
     email: string | null
     password: string | null
+    resetToken: string | null
+    resetTokenExpiry: Date | null
     receiveNews: boolean | null
     parentalConsent: boolean | null
     createdAt: Date | null
@@ -956,6 +960,8 @@ export namespace Prisma {
     photoUrl: number
     email: number
     password: number
+    resetToken: number
+    resetTokenExpiry: number
     receiveNews: number
     parentalConsent: number
     createdAt: number
@@ -993,6 +999,8 @@ export namespace Prisma {
     photoUrl?: true
     email?: true
     password?: true
+    resetToken?: true
+    resetTokenExpiry?: true
     receiveNews?: true
     parentalConsent?: true
     createdAt?: true
@@ -1020,6 +1028,8 @@ export namespace Prisma {
     photoUrl?: true
     email?: true
     password?: true
+    resetToken?: true
+    resetTokenExpiry?: true
     receiveNews?: true
     parentalConsent?: true
     createdAt?: true
@@ -1047,6 +1057,8 @@ export namespace Prisma {
     photoUrl?: true
     email?: true
     password?: true
+    resetToken?: true
+    resetTokenExpiry?: true
     receiveNews?: true
     parentalConsent?: true
     createdAt?: true
@@ -1161,6 +1173,8 @@ export namespace Prisma {
     photoUrl: string | null
     email: string
     password: string
+    resetToken: string | null
+    resetTokenExpiry: Date | null
     receiveNews: boolean
     parentalConsent: boolean
     createdAt: Date
@@ -1207,6 +1221,8 @@ export namespace Prisma {
     photoUrl?: boolean
     email?: boolean
     password?: boolean
+    resetToken?: boolean
+    resetTokenExpiry?: boolean
     receiveNews?: boolean
     parentalConsent?: boolean
     createdAt?: boolean
@@ -1236,13 +1252,15 @@ export namespace Prisma {
     photoUrl?: boolean
     email?: boolean
     password?: boolean
+    resetToken?: boolean
+    resetTokenExpiry?: boolean
     receiveNews?: boolean
     parentalConsent?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userType" | "lastName" | "firstName" | "lastNameKana" | "firstNameKana" | "lastNameRomaji" | "firstNameRomaji" | "gender" | "postalCode" | "address" | "building" | "affiliation" | "affiliationDetail" | "schoolName" | "birthDate" | "phone" | "photoUrl" | "email" | "password" | "receiveNews" | "parentalConsent" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userType" | "lastName" | "firstName" | "lastNameKana" | "firstNameKana" | "lastNameRomaji" | "firstNameRomaji" | "gender" | "postalCode" | "address" | "building" | "affiliation" | "affiliationDetail" | "schoolName" | "birthDate" | "phone" | "photoUrl" | "email" | "password" | "resetToken" | "resetTokenExpiry" | "receiveNews" | "parentalConsent" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1268,6 +1286,8 @@ export namespace Prisma {
       photoUrl: string | null
       email: string
       password: string
+      resetToken: string | null
+      resetTokenExpiry: Date | null
       receiveNews: boolean
       parentalConsent: boolean
       createdAt: Date
@@ -1661,6 +1681,8 @@ export namespace Prisma {
     readonly photoUrl: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
+    readonly resetToken: FieldRef<"User", 'String'>
+    readonly resetTokenExpiry: FieldRef<"User", 'DateTime'>
     readonly receiveNews: FieldRef<"User", 'Boolean'>
     readonly parentalConsent: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
@@ -2021,6 +2043,8 @@ export namespace Prisma {
     photoUrl: 'photoUrl',
     email: 'email',
     password: 'password',
+    resetToken: 'resetToken',
+    resetTokenExpiry: 'resetTokenExpiry',
     receiveNews: 'receiveNews',
     parentalConsent: 'parentalConsent',
     createdAt: 'createdAt',
@@ -2064,7 +2088,8 @@ export namespace Prisma {
     phone: 'phone',
     photoUrl: 'photoUrl',
     email: 'email',
-    password: 'password'
+    password: 'password',
+    resetToken: 'resetToken'
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
@@ -2137,6 +2162,8 @@ export namespace Prisma {
     photoUrl?: StringNullableFilter<"User"> | string | null
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
+    resetToken?: StringNullableFilter<"User"> | string | null
+    resetTokenExpiry?: DateTimeNullableFilter<"User"> | Date | string | null
     receiveNews?: BoolFilter<"User"> | boolean
     parentalConsent?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -2164,6 +2191,8 @@ export namespace Prisma {
     photoUrl?: SortOrderInput | SortOrder
     email?: SortOrder
     password?: SortOrder
+    resetToken?: SortOrderInput | SortOrder
+    resetTokenExpiry?: SortOrderInput | SortOrder
     receiveNews?: SortOrder
     parentalConsent?: SortOrder
     createdAt?: SortOrder
@@ -2195,6 +2224,8 @@ export namespace Prisma {
     phone?: StringFilter<"User"> | string
     photoUrl?: StringNullableFilter<"User"> | string | null
     password?: StringFilter<"User"> | string
+    resetToken?: StringNullableFilter<"User"> | string | null
+    resetTokenExpiry?: DateTimeNullableFilter<"User"> | Date | string | null
     receiveNews?: BoolFilter<"User"> | boolean
     parentalConsent?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -2222,6 +2253,8 @@ export namespace Prisma {
     photoUrl?: SortOrderInput | SortOrder
     email?: SortOrder
     password?: SortOrder
+    resetToken?: SortOrderInput | SortOrder
+    resetTokenExpiry?: SortOrderInput | SortOrder
     receiveNews?: SortOrder
     parentalConsent?: SortOrder
     createdAt?: SortOrder
@@ -2257,6 +2290,8 @@ export namespace Prisma {
     photoUrl?: StringNullableWithAggregatesFilter<"User"> | string | null
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
+    resetToken?: StringNullableWithAggregatesFilter<"User"> | string | null
+    resetTokenExpiry?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     receiveNews?: BoolWithAggregatesFilter<"User"> | boolean
     parentalConsent?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -2283,6 +2318,8 @@ export namespace Prisma {
     photoUrl?: string | null
     email: string
     password: string
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     receiveNews?: boolean
     parentalConsent?: boolean
     createdAt?: Date | string
@@ -2310,6 +2347,8 @@ export namespace Prisma {
     photoUrl?: string | null
     email: string
     password: string
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     receiveNews?: boolean
     parentalConsent?: boolean
     createdAt?: Date | string
@@ -2336,6 +2375,8 @@ export namespace Prisma {
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     receiveNews?: BoolFieldUpdateOperationsInput | boolean
     parentalConsent?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2363,6 +2404,8 @@ export namespace Prisma {
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     receiveNews?: BoolFieldUpdateOperationsInput | boolean
     parentalConsent?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2390,6 +2433,8 @@ export namespace Prisma {
     photoUrl?: string | null
     email: string
     password: string
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     receiveNews?: boolean
     parentalConsent?: boolean
     createdAt?: Date | string
@@ -2416,6 +2461,8 @@ export namespace Prisma {
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     receiveNews?: BoolFieldUpdateOperationsInput | boolean
     parentalConsent?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2443,6 +2490,8 @@ export namespace Prisma {
     photoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     receiveNews?: BoolFieldUpdateOperationsInput | boolean
     parentalConsent?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2501,6 +2550,17 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -2538,6 +2598,8 @@ export namespace Prisma {
     photoUrl?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    resetToken?: SortOrder
+    resetTokenExpiry?: SortOrder
     receiveNews?: SortOrder
     parentalConsent?: SortOrder
     createdAt?: SortOrder
@@ -2569,6 +2631,8 @@ export namespace Prisma {
     photoUrl?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    resetToken?: SortOrder
+    resetTokenExpiry?: SortOrder
     receiveNews?: SortOrder
     parentalConsent?: SortOrder
     createdAt?: SortOrder
@@ -2596,6 +2660,8 @@ export namespace Prisma {
     photoUrl?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    resetToken?: SortOrder
+    resetTokenExpiry?: SortOrder
     receiveNews?: SortOrder
     parentalConsent?: SortOrder
     createdAt?: SortOrder
@@ -2672,6 +2738,20 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
@@ -2690,6 +2770,10 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -2754,6 +2838,17 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -2847,6 +2942,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {

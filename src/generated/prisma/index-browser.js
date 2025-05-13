@@ -141,6 +141,8 @@ exports.Prisma.UserScalarFieldEnum = {
   photoUrl: 'photoUrl',
   email: 'email',
   password: 'password',
+  resetToken: 'resetToken',
+  resetTokenExpiry: 'resetTokenExpiry',
   receiveNews: 'receiveNews',
   parentalConsent: 'parentalConsent',
   createdAt: 'createdAt',
@@ -175,7 +177,8 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   phone: 'phone',
   photoUrl: 'photoUrl',
   email: 'email',
-  password: 'password'
+  password: 'password',
+  resetToken: 'resetToken'
 };
 
 

@@ -215,6 +215,21 @@ export default function AccountPage() {
               <div className="bg-gray-50 p-4 rounded-md">
                 <h2 className="text-lg font-medium mb-4">基本情報</h2>
                 
+                {/* 顔写真 */}
+                <div className="flex justify-center mb-6">
+                  <div className="relative w-32 h-32 overflow-hidden rounded-md border border-gray-300">
+                    <img 
+                      src={user.photoUrl || '/uploads/images.jpeg'} 
+                      alt="プロフィール写真" 
+                      className="object-cover w-full h-full"
+                      onError={(e) => {
+                        // 画像の読み込みに失敗した場合、代替画像を表示
+                        e.currentTarget.src = '/uploads/images.jpeg';
+                      }}
+                    />
+                  </div>
+                </div>
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">姓</label>
@@ -481,6 +496,21 @@ export default function AccountPage() {
               {/* 基本情報 */}
               <div className="bg-gray-50 p-4 rounded-md">
                 <h2 className="text-lg font-medium mb-4">基本情報</h2>
+                
+                {/* 顔写真 */}
+                <div className="flex justify-center mb-6">
+                  <div className="relative w-32 h-32 overflow-hidden rounded-md border border-gray-300">
+                    <img 
+                      src={user.photoUrl || '/uploads/images.jpeg'} 
+                      alt="プロフィール写真" 
+                      className="object-cover w-full h-full"
+                      onError={(e) => {
+                        // 画像の読み込みに失敗した場合、代替画像を表示
+                        e.currentTarget.src = '/uploads/images.jpeg';
+                      }}
+                    />
+                  </div>
+                </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>

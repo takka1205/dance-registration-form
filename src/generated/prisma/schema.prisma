@@ -7,7 +7,7 @@
 generator client {
   provider      = "prisma-client-js"
   output        = "../src/generated/prisma"
-  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "darwin-arm64"]
 }
 
 datasource db {
@@ -16,30 +16,32 @@ datasource db {
 }
 
 model User {
-  id                Int      @id @default(autoincrement())
-  userType          String   @map("user_type")
-  lastName          String   @map("last_name")
-  firstName         String   @map("first_name")
-  lastNameKana      String   @map("last_name_kana")
-  firstNameKana     String   @map("first_name_kana")
-  lastNameRomaji    String   @map("last_name_romaji")
-  firstNameRomaji   String   @map("first_name_romaji")
+  id                Int       @id @default(autoincrement())
+  userType          String    @map("user_type")
+  lastName          String    @map("last_name")
+  firstName         String    @map("first_name")
+  lastNameKana      String    @map("last_name_kana")
+  firstNameKana     String    @map("first_name_kana")
+  lastNameRomaji    String    @map("last_name_romaji")
+  firstNameRomaji   String    @map("first_name_romaji")
   gender            String
-  postalCode        String   @map("postal_code")
+  postalCode        String    @map("postal_code")
   address           String
   building          String?
   affiliation       String?
-  affiliationDetail String?  @map("affiliation_detail")
-  schoolName        String?  @map("school_name")
-  birthDate         DateTime @map("birth_date")
+  affiliationDetail String?   @map("affiliation_detail")
+  schoolName        String?   @map("school_name")
+  birthDate         DateTime  @map("birth_date")
   phone             String
-  photoUrl          String?  @map("photo_url")
-  email             String   @unique
+  photoUrl          String?   @map("photo_url")
+  email             String    @unique
   password          String
-  receiveNews       Boolean  @default(false) @map("receive_news")
-  parentalConsent   Boolean  @default(false) @map("parental_consent")
-  createdAt         DateTime @default(now()) @map("created_at")
-  updatedAt         DateTime @updatedAt @map("updated_at")
+  resetToken        String?   @map("reset_token")
+  resetTokenExpiry  DateTime? @map("reset_token_expiry")
+  receiveNews       Boolean   @default(false) @map("receive_news")
+  parentalConsent   Boolean   @default(false) @map("parental_consent")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
 
   @@index([email])
   @@index([userType])

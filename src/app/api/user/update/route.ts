@@ -44,6 +44,7 @@ export async function PUT(request: NextRequest) {
       building: userData.building || null,
       birthDate: new Date(userData.birthDate),
       phone: userData.phone,
+      photoUrl: userData.photoUrl || null,
       receiveNews: userData.receiveNews || false,
     };
     

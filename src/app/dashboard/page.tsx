@@ -155,7 +155,7 @@ export default function DashboardPage() {
                     <dl>
                       <dt className="text-sm font-medium text-gray-500 truncate">アカウント情報</dt>
                       <dd>
-                        <div className="text-lg font-medium text-gray-900">個人情報の確認・編集</div>
+                        <div className="text-lg font-medium text-gray-900">個人情報の確認・編集です</div>
                       </dd>
                     </dl>
                   </div>
