@@ -245,6 +245,75 @@ export default function UserPage() {
               <div className="bg-gray-50 p-4 rounded-md">
                 <h2 className="text-lg font-medium mb-4">基本情報</h2>
                 
+                {/* 顔写真アップロード */}
+                <div className="md:col-span-2 flex justify-center mb-6">
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-32 h-32 overflow-hidden rounded-md border border-gray-300 mb-2">
+                      {formData.photoUrl ? (
+                        <img 
+                          src={formData.photoUrl} 
+                          alt="プロフィール写真" 
+                          className="object-cover w-full h-full"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full w-full bg-gray-100">
+                          <svg className="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <input
+                      type="file"
+                      id="photo-upload"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={async (e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          try {
+                            // ファイルをサーバーにアップロード
+                            const formData = new FormData();
+                            formData.append('file', file);
+                            
+                            const response = await fetch('/api/upload-photo', {
+                              method: 'POST',
+                              body: formData,
+                            });
+                            
+                            const result = await response.json();
+                            
+                            if (result.success) {
+                              // 返されたURLをphotoUrlフィールドに設定
+                              setFormData({
+                                ...formData,
+                                photoUrl: result.url
+                              });
+                              console.log('File uploaded successfully:', result.url);
+                            } else {
+                              console.error('File upload failed:', result.error);
+                              alert(`画像のアップロードに失敗しました: ${result.error}`);
+                            }
+                          } catch (error) {
+                            console.error('File upload error:', error);
+                            alert('画像のアップロード中にエラーが発生しました');
+                          }
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => document.getElementById('photo-upload')?.click()}
+                      className="mt-2 inline-flex items-center px-3 py-1 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      写真を変更
+                    </button>
+                  </div>
+                </div>
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">姓</label>
@@ -517,6 +586,19 @@ export default function UserPage() {
               {/* 基本情報 */}
               <div className="bg-gray-50 p-4 rounded-md">
                 <h2 className="text-lg font-medium mb-4">基本情報</h2>
+                
+                {/* 顔写真 */}
+                {user.photoUrl && (
+                  <div className="flex justify-center mb-6">
+                    <div className="relative w-32 h-32 overflow-hidden rounded-md border border-gray-300">
+                      <img 
+                        src={user.photoUrl} 
+                        alt="プロフィール写真" 
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  </div>
+                )}
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>

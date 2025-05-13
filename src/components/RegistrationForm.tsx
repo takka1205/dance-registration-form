@@ -726,21 +726,42 @@ export default function RegistrationForm({ defaultEmail = '' }: RegistrationForm
               type="file"
               accept="image/*"
               className="hidden"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) {
-                  // ファイルをプレビュー表示
-                  const reader = new FileReader();
-                  reader.onloadend = () => {
-                    setPreviewImage(reader.result as string);
-                    // 実際のアプリケーションでは、ファイルをサーバーにアップロードし、
-                    // 返されたURLをphotoUrlフィールドに設定する
-                    setValue('photoUrl', file.name); // 仮の実装
-                  };
-                  reader.readAsDataURL(file);
-                  console.log('Selected file:', file);
-                }
-              }}
+      onChange={async (e) => {
+        const file = e.target.files?.[0];
+        if (file) {
+          try {
+            // ファイルをプレビュー表示
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              setPreviewImage(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+            
+            // ファイルをサーバーにアップロード
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            const response = await fetch('/api/upload-photo', {
+              method: 'POST',
+              body: formData,
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+              // 返されたURLをphotoUrlフィールドに設定
+              setValue('photoUrl', result.url);
+              console.log('File uploaded successfully:', result.url);
+            } else {
+              console.error('File upload failed:', result.error);
+              alert(`画像のアップロードに失敗しました: ${result.error}`);
+            }
+          } catch (error) {
+            console.error('File upload error:', error);
+            alert('画像のアップロード中にエラーが発生しました');
+          }
+        }
+      }}
             />
           </div>
           {previewImage && (
